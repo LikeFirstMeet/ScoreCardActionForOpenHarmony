@@ -21,7 +21,8 @@ jobs:
         uses: firenza/get-organization-repositories@v1.0.0
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          organization: 'openeuler-mirror'
+#           organization: 'openeuler-mirror'
+          organization: 'laiyoufafa'
 
       - name: Show org repos
         shell: bash

@@ -17,7 +17,6 @@ jobs:
       - name: Awesome generator
         uses: simonecorsi/mawesome@latest
         with:
-          api-token: ${{ secrets.API_TOKEN }}
-          github-token: ${{ secrets.GU_TOKEN }}
+          api-token: ${{ secrets.GH_TOKEN }}
           github-email: ${{ secrets.GH_EMAIL }}
           github-name: ${{ secrets.GH_OWNER }}

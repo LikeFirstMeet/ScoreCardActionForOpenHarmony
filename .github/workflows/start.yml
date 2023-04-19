@@ -18,6 +18,6 @@ jobs:
         uses: simonecorsi/mawesome@latest
         with:
           api-token: ${{ secrets.API_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-email: ${{ secrets.USER_EMAIL }}
-          github-name: ${{ github.repository_owner }}
+          github-token: ${{ secrets.GU_TOKEN }}
+          github-email: ${{ secrets.GH_EMAIL }}
+          github-name: ${{ secrets.GH_OWNER }}

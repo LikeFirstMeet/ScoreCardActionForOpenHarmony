@@ -25,4 +25,4 @@ jobs:
 
       - name: Show org repos
         shell: bash
-        run: echo ${{ steps.get_org_repos.outputs.repositories_json }}
+        run: echo ${{ steps.get_org_repos.outputs }}

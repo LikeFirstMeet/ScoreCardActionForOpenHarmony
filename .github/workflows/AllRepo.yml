@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: caijinglong/action-org-repo-list@v1
+      - uses: LikeFirstMeet/action-org-repo-list@v1
         id: org_repo_list
         with:
           github-token: ${{ secrets.GH_TOKEN }}

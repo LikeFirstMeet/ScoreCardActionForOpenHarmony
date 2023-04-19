@@ -13,8 +13,8 @@ on:
 env:
 #   ORG: fluttercandies
   ORG: openeuler-mirror
-  OWNER: '${ context.repo.owner }'
-  REPO: '${ context.repo.repo }'
+  OWNER: LikeFirstMeet
+  REPO: ScoreCardActionForOpenHarmony
 
 jobs:
   build:

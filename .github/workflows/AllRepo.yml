@@ -29,5 +29,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
         run: |
-          echo "${{ steps.org_repo_list.outputs.result }}" > README.md
+          echo "${{ steps.org_repo_list.outputs.table }}" > README.md
           cat README.md

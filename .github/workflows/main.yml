@@ -13,6 +13,8 @@ on:
 env:
 #   ORG: fluttercandies
   ORG: openeuler-mirror
+  OWNER: context.repo.owner
+  REPO: context.repo.repo
 
 jobs:
   build:
@@ -30,7 +32,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           export TARGET_FILE=/tmp/.github/profile/README.md
-          gh repo clone ${{ env.ORG }}/.github /tmp/.github
+          gh repo clone ${{ env.OWNER }}/${{ env.REPO }}/.github /tmp/.github
           cd /tmp/.github
           if [ ! -d "profile" ]; then
             mkdir profile

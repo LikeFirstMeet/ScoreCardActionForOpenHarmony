@@ -1,0 +1,37 @@
+name: GetUserReposList
+on:
+  push:
+    branches:
+    - main
+    - release/*
+  schedule:
+    # Runs every 30 minutes
+    - cron: '0/30 0/1 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo List
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+        with:
+          my_token: ${{ secrets.GH_TOKEN }}
+          (default)user: 'laiyopufafa'
+          # (default)max_page: 10
+          # (default)block_list:
+          # (default)allow_empty: false
+          # (default)allow_archived: true
+
+      - name: Echo Output
+        run: |
+          echo repo: ${{steps.repo.outputs.repo}}
+          echo repoList: ${{steps.repo.outputs.repoList}}
+          echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
+          echo repoList_PRIVATE: ${{steps.repo.outputs.repoList_PRIVATE}}
+          echo repoList_FORK: ${{steps.repo.outputs.repoList_FORK}}
+          echo privateList: ${{steps.repo.outputs.privateList}}
+          echo forkList: ${{steps.repo.outputs.forkList}}
+          echo emptyList: ${{steps.repo.outputs.emptyList}}
+          echo archivedList: ${{steps.repo.outputs.emptyList}}

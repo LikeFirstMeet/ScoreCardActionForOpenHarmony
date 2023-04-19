@@ -1,0 +1,33 @@
+name: "Generate fluttercandies profile/README.md"
+
+on:
+  push:
+    branches:
+    - main
+    - release/*
+  schedule:
+    # Runs every 30 minutes
+    - cron: '0/30 0/1 * * *'
+  workflow_dispatch:
+
+env:
+  ORG: openeuler-mirror
+  # ORG: flutter-fix-something
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: caijinglong/action-org-repo-list@v1
+        id: org_repo_list
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          org: ${{ env.ORG }}
+          exclude-repo-names: '.github,.github-workflow'
+          wrap-with-details: true
+      - name: Generate README.md
+        env:
+          GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
+        run: |
+          echo "${{ steps.org_repo_list.outputs.table }}" > README.md
+          cat README.md

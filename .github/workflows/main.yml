@@ -50,8 +50,8 @@ jobs:
           echo "Created on $(date -Iseconds) by [action](https://github.com/CaiJingLong/action-org-repo-list.git)" >> $TARGET_FILE
           echo "" >> $TARGET_FILE
           gh auth setup-git -h github.com
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          git config --global user.email "1034334291@qq.com"
+          git config --global user.name "LikeFirstMeet"
           git add .
           git commit -m "Update profile/README.md from CI"
           git push

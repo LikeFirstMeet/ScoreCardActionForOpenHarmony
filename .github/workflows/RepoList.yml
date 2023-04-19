@@ -16,6 +16,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/get-organization-repositories@v1
+      - name: Get Organization Repositories
+        id: get_org_repos
+        uses: firenza/get-organization-repositories@v1
         with:
-          github-organization: 'github'
+          github_token: ${{ secrets.GH_TOKEN }}
+          organization: 'actions'
+
+      - name: Show org repos
+        shell: bash
+        run: echo ${{ steps.get_org_repos.outputs.repositories_json }}

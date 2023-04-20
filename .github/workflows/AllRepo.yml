@@ -1,10 +1,10 @@
 name: "Generate fluttercandies profile/README.md"
 
 on:
-  push:
-    branches:
-    - main
-    - release/*
+#   push:
+#     branches:
+#     - main
+#     - release/*
   schedule:
     # Runs every 30 minutes
     - cron: '0/30 0/1 * * *'

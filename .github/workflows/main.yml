@@ -1,10 +1,10 @@
 name: Generate organization profile README.md
 
 on:
-#   push:
-#     branches:
-#     - main
-#     - release/*
+  push:
+    branches:
+    - main
+    - release/*
   schedule:
     # Runs every 30 minutes
     - cron: '0 0 * * *'
@@ -32,7 +32,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           export TARGET_FILE=/tmp/.github/profile/README.md
-          gh repo clone ${{ env.OWNER }}/${{ env.REPO }}/.github /tmp/.github
+          gh repo clone LikeFirstMeet/ScoreCardActionForOpenHarmony /tmp/.github
           cd /tmp/.github
           if [ ! -d "profile" ]; then
             mkdir profile

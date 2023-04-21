@@ -1,11 +1,11 @@
 name: Update awesome list
 
 on:
-#  push:
-#   branches:
-#   - main
-#   - release/*
-#   workflow_dispatch:
+  push:
+   branches:
+    - main
+    - release/*
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 

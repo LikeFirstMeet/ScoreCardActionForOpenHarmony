@@ -13,8 +13,6 @@ on:
 env:
 #   ORG: fluttercandies
   ORG: openeuler-mirror
-  OWNER: LikeFirstMeet
-  REPO: ScoreCardActionForOpenHarmony
 
 jobs:
   build:
@@ -32,7 +30,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           export TARGET_FILE=/tmp/.github/profile/README.md
-          gh repo clone LikeFirstMeet/ScoreCardActionForOpenHarmony /tmp/.github
+          gh repo clone LikeFirstMeet/TestAction /tmp/.github
           cd /tmp/.github
           if [ ! -d "profile" ]; then
             mkdir profile

@@ -33,7 +33,7 @@ jobs:
         # set GIGHUB_AUTH_TOKEN
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-        uses: ossf/scorecard@main
+        uses: ossf/scorecard@v4.10.5
         # input some args
         with: 
           args: " --repo https://github.com/ossf/scorecard --format json "

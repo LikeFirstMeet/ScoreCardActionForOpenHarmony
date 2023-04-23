@@ -30,10 +30,12 @@ jobs:
           
       - name: Get Scorecard
         id: scores
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         uses: ossf/scorecard@main
         with: 
           args: "--repo https://github.com/ossf/scorecard --format json"
-          
+   
           
           
       - name: Echo Output

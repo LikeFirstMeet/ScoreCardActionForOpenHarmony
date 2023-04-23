@@ -29,7 +29,7 @@ jobs:
           echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
           
       - name: Get Scorecard
-        uses: ossf/scorecard@stable
+        uses: ossf/scorecard@v4:sha256-9b744c8ee3ed2bfcfd66192e46dff8312d1bd9f04c28c4e2eb36a36df49bce49.sig
       
       - name: Score Repositroies
         env:

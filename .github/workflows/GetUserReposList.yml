@@ -30,11 +30,13 @@ jobs:
           
       - name: Get Scorecard
         id: scores
+        # set GIGHUB_AUTH_TOKEN
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         uses: ossf/scorecard@main
+        # input some args
         with: 
-          args: "--repo https://github.com/ossf/scorecard --format json"
+          args: " --repo https://github.com/ossf/scorecard --format json "
    
           
           
@@ -46,5 +48,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          export GITHUB_AUTH_TOKEN=${{ secrets.GH_TOKEN }}
-          ./scorecard --repo https://github.com/ossf/scorecard --format json
+          export scorecard="/home/runner/work/_actions/ossf/scorecard/main"
+          scorecard --repo https://github.com/ossf/scorecard --format json

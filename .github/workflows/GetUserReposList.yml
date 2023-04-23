@@ -18,7 +18,7 @@ jobs:
         uses: yi-Xu-0100/repo-list-generator@v1.1.1
         with:
           my_token: ${{ secrets.GH_TOKEN }}
-          (default)user: 'laiyopufafa'
+          user: 'laiyopufafa'
           # (default)max_page: 10
           # (default)block_list:
           # (default)allow_empty: false
@@ -32,8 +32,9 @@ jobs:
         id: scores
         uses: ossf/scorecard@main
         with: 
-          --repo: https://github.com/ossf/scorecard
-          --format: json
+          args: '--repo: https://github.com/ossf/scorecard --format: json'
+          
+          
           
       - name: Echo Output
         run: |

@@ -35,5 +35,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          export GITHUB_AUTH_TOKEN=${{ GH_TOKEN }}
+          export GITHUB_AUTH_TOKEN=${{ secrets.GH_TOKEN }}
           scorecard --repo https://github.com/ossf/scorecard --format json

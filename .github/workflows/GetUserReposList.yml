@@ -28,3 +28,12 @@ jobs:
         run: |
           echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
           
+      - name: Get Scorecard
+        uses: ossf/scorecard@v4
+      
+      - name: Score Repositroies
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          export GITHUB_AUTH_TOKEN=${{ GH_TOKEN }}
+          scorecard --repo https://github.com/ossf/scorecard --format json

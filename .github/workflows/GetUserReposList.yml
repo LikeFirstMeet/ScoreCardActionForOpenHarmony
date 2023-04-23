@@ -23,10 +23,17 @@ jobs:
           # (default)block_list:
           # (default)allow_empty: false
           # (default)allow_archived: true
-
-      - name: Echo Output
-        run: |
-          echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
+          
+            
+        # install go  
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+          check-latest: true
+      
+      
+     
           
       - name: Get Scorecard
         id: scores
@@ -37,16 +44,17 @@ jobs:
         # input some args
         with: 
           args: " --repo https://github.com/ossf/scorecard --format json "
-   
+      - run: |
+          echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
           
           
-      - name: Echo Output
-        run: |
-          echo repoList_ALL: ${{steps.scores.outputs}}
+#       - name: Echo Output
+#         run: |
+#           echo repoList_ALL: ${{steps.scores.outputs}}
           
       - name: Score Repositroies
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          export scorecard="/home/runner/work/_actions/ossf/scorecard/main"
-          scorecard --repo https://github.com/ossf/scorecard --format json
+          export scorecard="/home/runner/work/_actions/ossf/scorecard/main/scorecard"
+          ./scorecard --repo https://github.com/ossf/scorecard --format json

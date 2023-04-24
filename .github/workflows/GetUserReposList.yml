@@ -56,8 +56,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          ls /home/runner/work/_actions/ossf/scorecard/main/
+          ls /home/runner/work/_actions/ossf/scorecard
           echo "----------------------------------------"
           pwd
-          export scorecard="/home/runner/work/_actions/ossf/scorecard/main/scorecard"
+          export scorecard="/home/runner/work/_actions/ossf/scorecard/"
           ./scorecard --repo https://github.com/ossf/scorecard --format json

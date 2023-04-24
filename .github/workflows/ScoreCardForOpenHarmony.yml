@@ -34,29 +34,16 @@ jobs:
           gh repo clone ossf/scorecard /tmp/scorecard
           cd /tmp/scorecard
           make build
-          pwd
+          export PATH=$PATH:/tmp/scorecard
           
           
           
-#       - name: Echo Output
-#         run: |
-#           echo repoList_ALL: ${{steps.scores.outputs.repoList_ALL}}
+      - name: Echo Output
+        run: |
+           echo repoList_ALL: ${{steps.scores.outputs.repoList_ALL}}
           
       - name: Score Repositroies
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          whereis scorecard
-          # ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
-          #cd /home/runner/work/_actions/ossf/scorecard/v4.10.5/
-          pwd
-          #make build
-          #export PATH=$PATH:/home/runner/work/_actions/ossf/scorecard/v4.10.5/
-          
-          # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
-          
-          echo "----------------------------------------"
-          #ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
-          echo "----------------------------------------"
-          
-          #scorecard --repo https://github.com/ossf/scorecard --format json
+          scorecard --repo https://github.com/ossf/scorecard --format json

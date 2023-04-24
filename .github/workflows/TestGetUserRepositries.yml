@@ -1,4 +1,4 @@
-name: GetUserReposList
+name: TestGetUserReposList
 on:
   workflow_dispatch:
 

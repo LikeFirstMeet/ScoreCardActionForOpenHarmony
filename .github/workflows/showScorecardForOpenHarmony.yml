@@ -1,0 +1,45 @@
+name: ShowScorecardForOpenHarmony
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo List
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+        with:
+          my_token: ${{ secrets.GH_TOKEN }}
+          # user: 'laiyoufafa'
+          # (default)max_page: 10
+          # (default)block_list:
+          # (default)allow_empty: false
+          # (default)allow_archived: true
+          
+      # /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
+      # - name: current PATH
+      #  run: pwd
+     
+          
+      - name: Get Scorecard
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          wget https://github.com/ossf/scorecard/releases/download/v4.10.5/scorecard_4.10.5_linux_amd64.tar.gz
+          tar -zxvf scorecard_4.10.5_linux_amd64.tar.gz
+          cp scorecard-linux-amd64 scorecard
+          
+          
+      - name: Score Repositroies
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          env
+          export PATH=$PATH:$GITHUB_WORKSPACE
+          repos=${{steps.repo.outputs.repoList_ALL}}
+          arr=(${repos//,/ })
+          for i in ${arr[@]};do
+             scorecard --repo https://github.com/LikeFirstMeet/$i --format json
+          done
+          

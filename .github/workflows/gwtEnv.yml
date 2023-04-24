@@ -1,4 +1,4 @@
-name: GetUserReposList
+name: GetENV
 on:
   push:
     branches:
@@ -13,6 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -run:
-        go env
-        ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+      - name: getENV
+        run:
+          go env
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/

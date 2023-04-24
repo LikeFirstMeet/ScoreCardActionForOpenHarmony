@@ -16,4 +16,4 @@ jobs:
       - name: getENV
         run: |
           go env
-          ls -ll /home/runner/go/
+          dpkg --print-architecture

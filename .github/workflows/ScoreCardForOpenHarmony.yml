@@ -1,0 +1,62 @@
+name: GetUserReposList
+on:
+  push:
+    branches:
+    - main
+    - release/*
+  schedule:
+    # Runs every 30 minutes
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo List
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+        with:
+          my_token: ${{ secrets.GH_TOKEN }}
+          # user: 'laiyoufafa'
+          # (default)max_page: 10
+          # (default)block_list:
+          # (default)allow_empty: false
+          # (default)allow_archived: true
+      
+      
+     
+          
+      - name: Get Scorecard
+        id: scores
+        # set GIGHUB_AUTH_TOKEN
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: |
+          git clone git@github.com:ossf/scorecard.git
+          cd scorecard
+          pwd
+          
+          
+#       - name: Echo Output
+#         run: |
+#           echo repoList_ALL: ${{steps.scores.outputs.repoList_ALL}}
+          
+      - name: Score Repositroies
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          whereis scorecard
+          # ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          #cd /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          pwd
+          #make build
+          #export PATH=$PATH:/home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          
+          # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
+          
+          echo "----------------------------------------"
+          #ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          echo "----------------------------------------"
+          
+          #scorecard --repo https://github.com/ossf/scorecard --format json

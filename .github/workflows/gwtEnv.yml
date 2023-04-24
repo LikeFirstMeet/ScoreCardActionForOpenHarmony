@@ -16,4 +16,4 @@ jobs:
       - name: getENV
         run: |
           go env
-          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          ls -ll /home/runner/go

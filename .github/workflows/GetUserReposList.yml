@@ -50,7 +50,7 @@ jobs:
         run: |
           ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
           echo "----------------------------------------"
-          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed/
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed
           echo "----------------------------------------"
           # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
          

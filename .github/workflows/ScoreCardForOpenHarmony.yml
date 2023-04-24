@@ -40,7 +40,7 @@ jobs:
       - name: Echo Output
         run: |
            for i in ${{steps.repo.outputs.repoList_ALL}};do
-               echo -e '$i\n'
+               echo -e '${i}\n'
            done
           
       - name: Score Repositroies

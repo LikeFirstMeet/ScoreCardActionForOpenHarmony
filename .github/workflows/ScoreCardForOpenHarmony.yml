@@ -1,4 +1,4 @@
-name: GetUserReposList
+name: ScorecardForOpenHarmony
 on:
   push:
     branches:
@@ -28,8 +28,6 @@ jobs:
      
           
       - name: Get Scorecard
-        id: scores
-        # set GIGHUB_AUTH_TOKEN
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: |

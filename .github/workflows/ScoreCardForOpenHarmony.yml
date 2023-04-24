@@ -24,7 +24,8 @@ jobs:
           # (default)allow_empty: false
           # (default)allow_archived: true
       
-      
+      - name: current PATH
+        run: pwd
      
           
       - name: Get Scorecard

@@ -51,6 +51,7 @@ jobs:
           whereis scorecard
           # ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
           cd /home/runner/work/_actions/ossf/scorecard/v4.10.5/
+          pwd
           make build
           export PATH=$PATH:/home/runner/work/_actions/ossf/scorecard/v4.10.5/
           

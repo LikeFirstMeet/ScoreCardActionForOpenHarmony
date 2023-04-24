@@ -30,7 +30,7 @@ jobs:
       - name: Get Scorecard
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: |
+        run: |
           git clone git@github.com:ossf/scorecard.git
           cd scorecard
           pwd

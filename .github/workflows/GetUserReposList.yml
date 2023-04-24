@@ -48,7 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          locate scorecard
+          whereis scorecard
           # ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
           echo "----------------------------------------"
           # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony

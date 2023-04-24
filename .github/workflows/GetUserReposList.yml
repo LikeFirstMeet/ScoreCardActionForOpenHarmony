@@ -48,10 +48,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
           echo "----------------------------------------"
-          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed/
           echo "----------------------------------------"
-          pwd
-          export scorecard="/home/runner/work/_actions/ossf/scorecard/"
+          # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
+         
+          export scorecard="/home/runner/work/_actions/ossf/scorecard/v4.10.5/main.go"
           ./scorecard --repo https://github.com/ossf/scorecard --format json

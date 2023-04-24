@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           env
-          export PATH=$PATH:/home/runner/work/${context.repo.repo}/${context.repo.repo}/
+          export PATH=$PATH:$GITHUB_WORKSPACE
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
            for i in ${arr[@]};do

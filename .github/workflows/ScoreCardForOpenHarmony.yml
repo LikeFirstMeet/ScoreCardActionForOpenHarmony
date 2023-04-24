@@ -32,13 +32,16 @@ jobs:
       - name: Get Scorecard
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          DOWNLOAD_URL: https://github.com/ossf/scorecard/releases/download/v4.10.5/scorecard_4.10.5_linux_amd64.tar.gz
+          BASE_URL: https://github.com/ossf/scorecard/releases/download/
+          RAW_FILE_NAME: scorecard_4.10.5_linux_amd64.tar.gz
+          EXCUTE_FILE_NAME: scorecard_linux_amd64
         run: |
-          gh repo clone ossf/scorecard /tmp/scorecard
-          cd /tmp/scorecard
-          make build
-          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/tmp/scorecard
-          
-          
+          wget ${{ DOWNLOAD_URL }}
+          chmod 777 ${{ RAW_FILE_NAME }}
+          tar -zxvf ${{ RAW_FILE_NAME }}
+          cp ${{ EXECUTE_FILE_NAME }} scorecard
+          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/
           
       - name: Echo Output
         run: |
@@ -48,5 +51,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/tmp/scorecard
+          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/
           scorecard --repo https://github.com/ossf/scorecard --format json

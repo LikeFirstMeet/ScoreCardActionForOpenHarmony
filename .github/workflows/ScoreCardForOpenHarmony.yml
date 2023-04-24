@@ -37,15 +37,12 @@ jobs:
           tar -zxvf scorecard_4.10.5_linux_amd64.tar.gz
           cp scorecard-linux-amd64 scorecard
           
-      - name: Echo Output
-        run: |
-          
           
       - name: Score Repositroies
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/
+          export PATH=$PATH:/home/runner/work/${context.repo.repo}/${context.repo.repo}/
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
            for i in ${arr[@]};do

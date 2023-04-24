@@ -35,7 +35,7 @@ jobs:
         run: |
           wget https://github.com/ossf/scorecard/releases/download/v4.10.5/scorecard_4.10.5_linux_amd64.tar.gz
           tar -zxvf scorecard_4.10.5_linux_amd64.tar.gz
-          cp scorecard_linux_amd64 scorecard
+          cp scorecard-linux-amd64 scorecard
           export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/
           env
           

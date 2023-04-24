@@ -56,7 +56,6 @@ jobs:
           
           for i in ${arr[@]};do
              scorecard --repo https://github.com/LikeFirstMeet/$i --format json >> $TARGET_FILE
-             echo "/n" >>  $TARGET_FILE
           done
           
           gh auth setup-git -h github.com

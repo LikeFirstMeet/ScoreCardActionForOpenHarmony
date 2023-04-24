@@ -39,13 +39,16 @@ jobs:
           
       - name: Echo Output
         run: |
-           for i in ${{steps.repo.outputs.repoList_ALL}};do
-               echo -e '${i}\n'
-           done
+          
           
       - name: Score Repositroies
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/
-          scorecard --repo https://github.com/ossf/scorecard --format json
+           repos=${{steps.repo.outputs.repoList_ALL}}
+           arr=(${repos//,/ })
+           for i in ${arr[@]};do
+             scorecard --repo https://github.com/LikeFirstMeet/$i --format json
+           done
+          

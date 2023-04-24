@@ -39,7 +39,9 @@ jobs:
           
       - name: Echo Output
         run: |
-           echo repoList_ALL: ${{steps.scores.outputs.repoList_ALL}}
+           for i in ${{steps.repo.outputs.repoList_ALL}};do
+               echo -e '$i\n'
+           done
           
       - name: Score Repositroies
         env:

@@ -23,14 +23,6 @@ jobs:
           # (default)block_list:
           # (default)allow_empty: false
           # (default)allow_archived: true
-          
-            
-        # install go  
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
-        with:
-          go-version: '1.19'
-          check-latest: true
       
       
      
@@ -56,7 +48,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          ls /home/runner/work/_actions/ossf/scorecard
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5
+          echo "----------------------------------------"
+          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed
           echo "----------------------------------------"
           pwd
           export scorecard="/home/runner/work/_actions/ossf/scorecard/"

@@ -44,7 +44,7 @@ jobs:
           # 用于存储结果文件
           export TARGET_FILE=/tmp/.github/profile/scores.txt
           # 下载当前仓库
-          gh repo $GITHUB_REPOSITORY /tmp/.github
+          gh repo clone $GITHUB_REPOSITORY /tmp/.github
           cd /tmp/.github
           if [ ! -d "profile" ]; then
             mkdir profile

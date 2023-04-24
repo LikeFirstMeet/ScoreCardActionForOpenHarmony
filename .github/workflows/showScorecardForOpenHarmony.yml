@@ -36,10 +36,32 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           env
+          # 将scorecard加入环境变量
           export PATH=$PATH:$GITHUB_WORKSPACE
+          # 将仓库列表变成数组格式
           repos=${{steps.repo.outputs.repoList_ALL}}
           arr=(${repos//,/ })
+          # 用于存储结果文件
+          export TARGET_FILE=/tmp/.github/profile/scores.txt
+          # 下载当前仓库
+          gh repo $GITHUB_REPOSITORY /tmp/.github
+          cd /tmp/.github
+          if [ ! -d "profile" ]; then
+            mkdir profile
+          fi
+          if [ -f "$TARGET_FILE" ]; then
+            rm $TARGET_FILE
+          fi
+          touch $TARGET_FILE
+          
           for i in ${arr[@]};do
-             scorecard --repo https://github.com/LikeFirstMeet/$i --format json
+             scorecard --repo https://github.com/LikeFirstMeet/$i --format json >> $TARGET_FILE
+             echo "/n" >>  $TARGET_FILE
           done
           
+          gh auth setup-git -h github.com
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update profile/scores.txt from CI"
+          git push

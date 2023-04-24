@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: getENV
-        run:
+        run: |
           go env
           ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/

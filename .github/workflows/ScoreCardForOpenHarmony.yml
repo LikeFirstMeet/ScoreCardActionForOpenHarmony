@@ -23,9 +23,10 @@ jobs:
           # (default)block_list:
           # (default)allow_empty: false
           # (default)allow_archived: true
-      
-      - name: current PATH
-        run: pwd
+          
+      # /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
+      # - name: current PATH
+      #  run: pwd
      
           
       - name: Get Scorecard
@@ -35,7 +36,7 @@ jobs:
           gh repo clone ossf/scorecard /tmp/scorecard
           cd /tmp/scorecard
           make build
-          export PATH=$PATH:/tmp/scorecard
+          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/tmp/scorecard
           
           
           
@@ -47,4 +48,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+          export PATH=$PATH:/home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony/tmp/scorecard
           scorecard --repo https://github.com/ossf/scorecard --format json

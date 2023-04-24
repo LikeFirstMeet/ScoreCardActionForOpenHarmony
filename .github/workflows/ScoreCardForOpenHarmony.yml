@@ -32,7 +32,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh repo clone ossf/scorecard /tmp/scorecard
-          cd /temp/scorecard
+          cd /tmp/scorecard
           make build
           pwd
           

@@ -31,11 +31,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          #gh repo clone git@github.com:ossf/scorecard.git
-          #cd scorecard
-          #pwd
-          gh repo clone LikeFirstMeet/TestAction /tmp/.github
-          cd /tmp
+          gh repo clone ossf/scorecard /tmp/scorecard
+          cd /temp/scorecard
+          make build
+          pwd
+          
           
           
 #       - name: Echo Output

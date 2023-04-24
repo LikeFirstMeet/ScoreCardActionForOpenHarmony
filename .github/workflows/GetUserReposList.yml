@@ -50,9 +50,8 @@ jobs:
         run: |
           ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5/
           echo "----------------------------------------"
-          ls -ll /home/runner/work/_actions/ossf/scorecard/v4.10.5.completed
-          echo "----------------------------------------"
           # pwd --> /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
          
           export scorecard="/home/runner/work/_actions/ossf/scorecard/v4.10.5/main.go"
-          ./scorecard --repo https://github.com/ossf/scorecard --format json
+          echo scorecard
+          scorecard --repo https://github.com/ossf/scorecard --format json

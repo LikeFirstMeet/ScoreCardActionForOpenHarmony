@@ -62,10 +62,12 @@ jobs:
                 for((i=0;i<$retry_times;i++))
                 do
                   {
-                    scorecard --repo $repoName --format json >> str
-                    } && { 
-                    flag=0
-                    break 
+                    {
+                      scorecard --repo $repoName --format json >> str
+                      } && { 
+                      flag=0
+                      break 
+                    }
                   }
                 done
              }

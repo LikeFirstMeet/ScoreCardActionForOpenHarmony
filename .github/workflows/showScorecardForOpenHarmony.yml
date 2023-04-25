@@ -53,10 +53,11 @@ jobs:
           touch $TARGET_FILE
           count=0
           for i in ${arr[@]};do
-             var repoName=https://github.com/laiyoufafa/$i
-             count=${count}+1
-             echo ${count} + repoName
-             scorecard --repo repoName --format json >> $TARGET_FILE
+             repoName=https://github.com/laiyoufafa/$i
+             count=$count+1
+             echo $count
+             echo $repoName
+             scorecard --repo $repoName --format json >> $TARGET_FILE
              sleep 5
           done
           

@@ -40,7 +40,6 @@ jobs:
           
       - name: Score Repositroies
         run: |
-           export LANG=en_US.UTF-8
            export PATH=$PATH:$GITHUB_WORKSPACE
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
@@ -55,7 +54,10 @@ jobs:
              repoName=https://github.com/laiyoufafa/$i
              echo "times:${count}  repo_url:${repoName}"
              str=""
-             scorecard --repo $repoName --format json >> str
+             ( str=$(scorecard --repo $repoName --format json) ) || 
+             ( str=$(scorecard --repo $repoName --format json) ) ||
+             ( str=$(scorecard --repo $repoName --format json) ) ||
+             ( str=$(echo "faild on ${repoName}") ) 
              echo $str
              sleep 2s
            done

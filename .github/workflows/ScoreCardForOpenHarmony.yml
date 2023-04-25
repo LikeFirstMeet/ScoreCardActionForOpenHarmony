@@ -64,7 +64,8 @@ jobs:
                   {scorecard --repo $repoName --format json >> str}&&{ flag=0;break; }
                 done
              }
-             if (( falg==0 )) 
+             if (( falg==0 )); 
+             then
                 echo str
              else
                 echo "could not score repo_url:${repoName}"

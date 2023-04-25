@@ -55,7 +55,7 @@ jobs:
              count=$(($count+1))
              repoName=https://github.com/laiyoufafa/$i
              echo "times:${count}  repo_url:${repoName}"
-             scorecard --repo $repoName --format json >> str
+             scorecard --repo $repoName --format json
              
              sleep 2s
            done

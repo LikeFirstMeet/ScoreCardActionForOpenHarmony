@@ -54,7 +54,7 @@ jobs:
           count=0
           for i in ${arr[@]};do
              repoName=https://github.com/laiyoufafa/$i
-             $count=${count+1}
+             count=$(($count+1))
              echo "time:${count}    repos_url:${repoName} "
              scorecard --repo $repoName --format json >> $TARGET_FILE
              sleep 5

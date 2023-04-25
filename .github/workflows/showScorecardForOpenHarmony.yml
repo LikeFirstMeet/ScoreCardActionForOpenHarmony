@@ -53,7 +53,7 @@ jobs:
           touch $TARGET_FILE
           
           for i in ${arr[@]};do
-             scorecard --repo https://github.com/LikeFirstMeet/$i --format json >> $TARGET_FILE
+             scorecard --repo https://github.com/laiyoufafa/$i --format json >> $TARGET_FILE
           done
           
           gh auth setup-git -h github.com

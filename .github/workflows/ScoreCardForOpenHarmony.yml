@@ -17,8 +17,8 @@ jobs:
         id: repo
         uses: yi-Xu-0100/repo-list-generator@v1.1.1
         with:
-          my_token: ${{ secrets.GH_TOKEN }}
-          # user: 'laiyoufafa'
+          my_token: ${{ secrets.SCORE_TS }}
+          user: 'laiyoufafa'
           # (default)max_page: 10
           # (default)block_list:
           # (default)allow_empty: false
@@ -39,14 +39,22 @@ jobs:
           
           
       - name: Score Repositroies
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           env
           export PATH=$PATH:$GITHUB_WORKSPACE
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
+           count=0
            for i in ${arr[@]};do
-             scorecard --repo https://github.com/LikeFirstMeet/$i --format json
+             if [ $(($count%2)) -eq 0 ]; then
+                export GH_TOKEN=${{ secrets.GH_TOKEN }}
+             else
+                export GH_TOKEN=${{ secrets.SCORE_TS }}
+             fi
+             count=$(($count+1))
+             repoName=https://github.com/laiyoufafa/$i
+             echo "times:${count}  repo_url:${repoName}"
+             scorecard --repo repoName --format json
+             sleep 2s
            done
           

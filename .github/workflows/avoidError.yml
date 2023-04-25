@@ -1,0 +1,62 @@
+name: avoid scorecard method
+on:
+  push:
+    branches:
+    - main
+    - release/*
+  schedule:
+    # Runs every 30 minutes
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repo List
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+        with:
+          my_token: ${{ secrets.SCORE_TS }}
+          user: 'laiyoufafa'
+          # (default)max_page: 10
+          # (default)block_list:
+          # (default)allow_empty: false
+          # (default)allow_archived: true
+          
+      # /home/runner/work/ScoreCardActionForOpenHarmony/ScoreCardActionForOpenHarmony
+      # - name: current PATH
+      #  run: pwd
+     
+          
+      - name: Get Scorecard
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          wget https://github.com/ossf/scorecard/releases/download/v4.10.5/scorecard_4.10.5_linux_amd64.tar.gz
+          tar -zxvf scorecard_4.10.5_linux_amd64.tar.gz
+          cp scorecard-linux-amd64 scorecard
+          
+          
+      - name: Score Repositroies
+        run: |
+           export LANG=en_US.UTF-8
+           env
+           export PATH=$PATH:$GITHUB_WORKSPACE
+           repos=${{steps.repo.outputs.repoList_ALL}}
+           arr=(${repos//,/ })
+           count=0
+           for i in ${arr[@]};do
+             if [ $(($count%2)) -eq 0 ]; then
+                export GH_TOKEN=${{ secrets.GH_TOKEN }}
+             else
+                export GH_TOKEN=${{ secrets.SCORE_TS }}
+             fi
+             count=$(($count+1))
+             repoName=https://github.com/laiyoufafa/$i
+             echo "times:${count}  repo_url:${repoName}"
+             {{scorecard --repo $repoName --format json >> str} && {echo str} } || { {scorecard --repo $repoName --format json >> str} && {echo str}} || { {scorecard --repo $repoName --format json >> str} && {echo str}} || {echo "faild to get score for ${repoName}"}
+             
+             sleep 2s
+           done
+          

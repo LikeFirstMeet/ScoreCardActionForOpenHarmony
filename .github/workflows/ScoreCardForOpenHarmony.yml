@@ -45,6 +45,7 @@ jobs:
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
            count=0
+           retry_times=3
            for i in ${arr[@]};do
              if [ $(($count%2)) -eq 0 ]; then
                 export GH_TOKEN=${{ secrets.GH_TOKEN }}
@@ -54,7 +55,21 @@ jobs:
              count=$(($count+1))
              repoName=https://github.com/laiyoufafa/$i
              echo "times:${count}  repo_url:${repoName}"
-             scorecard --repo $repoName --format json
+             str=""
+             flag=0
+             { scorecard --repo $repoName --format json >> str }||{
+                flag=1
+                for((i=0;i<$retry_times;i++))
+                do
+                  {scorecard --repo $repoName --format json >> str}&&{ flag=0;break; }
+                done
+             }
+             if (( falg==0 )) 
+                echo str
+             else
+                echo "could not score repo_url:${repoName}"
+             fi
+             
              sleep 2s
            done
           

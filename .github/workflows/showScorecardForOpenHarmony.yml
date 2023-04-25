@@ -11,7 +11,7 @@ jobs:
         uses: yi-Xu-0100/repo-list-generator@v1.1.1
         with:
           my_token: ${{ secrets.SCORE_TS }}
-          #  user: 'laiyoufafa'
+          user: 'laiyoufafa'
           # (default)max_page: 10
           # (default)block_list:
           # (default)allow_empty: false

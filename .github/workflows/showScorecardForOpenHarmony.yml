@@ -51,9 +51,12 @@ jobs:
             rm $TARGET_FILE
           fi
           touch $TARGET_FILE
-          
+          count=0
           for i in ${arr[@]};do
-             scorecard --repo https://github.com/laiyoufafa/$i --format json >> $TARGET_FILE
+             var repoName=https://github.com/laiyoufafa/$i
+             count=${count}+1
+             echo ${count} + repoName
+             scorecard --repo repoName --format json >> $TARGET_FILE
              sleep 5
           done
           

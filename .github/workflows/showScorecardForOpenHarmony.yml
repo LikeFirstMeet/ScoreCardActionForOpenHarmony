@@ -53,6 +53,11 @@ jobs:
           touch $TARGET_FILE
           count=0
           for i in ${arr[@]};do
+             if [$(($count%2)) -eq 0];then
+                export GH_TOKEN=${{ secrets.GH_TOKEN }}
+             else
+                export GH_TOKEN=${{ secrets.SCORE_TS }}
+             fi
              repoName=https://github.com/laiyoufafa/$i
              count=$(($count+1))
              echo "time:${count}    repos_url:${repoName} "

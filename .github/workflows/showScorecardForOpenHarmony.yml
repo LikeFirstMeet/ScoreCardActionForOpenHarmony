@@ -54,6 +54,7 @@ jobs:
           
           for i in ${arr[@]};do
              scorecard --repo https://github.com/laiyoufafa/$i --format json >> $TARGET_FILE
+             sleep 5
           done
           
           gh auth setup-git -h github.com

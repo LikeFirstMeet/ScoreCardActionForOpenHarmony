@@ -10,8 +10,8 @@ jobs:
         id: repo
         uses: yi-Xu-0100/repo-list-generator@v1.1.1
         with:
-          my_token: ${{ secrets.GH_TOKEN }}
-          # user: 'laiyoufafa'
+          my_token: ${{ secrets.SCORE_TS }}
+          #  user: 'laiyoufafa'
           # (default)max_page: 10
           # (default)block_list:
           # (default)allow_empty: false
@@ -23,8 +23,6 @@ jobs:
      
           
       - name: Get Scorecard
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           wget https://github.com/ossf/scorecard/releases/download/v4.10.5/scorecard_4.10.5_linux_amd64.tar.gz
           tar -zxvf scorecard_4.10.5_linux_amd64.tar.gz

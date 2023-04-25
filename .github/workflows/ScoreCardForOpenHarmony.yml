@@ -41,7 +41,6 @@ jobs:
       - name: Score Repositroies
         run: |
            export LANG=en_US.UTF-8
-           locale-gen en_US.UTF-8
            env
            export PATH=$PATH:$GITHUB_WORKSPACE
            repos=${{steps.repo.outputs.repoList_ALL}}

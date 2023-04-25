@@ -41,7 +41,6 @@ jobs:
       - name: Score Repositroies
         run: |
            export LANG=en_US.UTF-8
-           env
            export PATH=$PATH:$GITHUB_WORKSPACE
            repos=${{steps.repo.outputs.repoList_ALL}}
            arr=(${repos//,/ })
@@ -55,11 +54,9 @@ jobs:
              count=$(($count+1))
              repoName=https://github.com/laiyoufafa/$i
              echo "times:${count}  repo_url:${repoName}"
+           
              {
-                {{scorecard --repo $repoName --format json >> str} && {echo str} } || 
-                { {scorecard --repo $repoName --format json >> str} && {echo str}} || 
-                { {scorecard --repo $repoName --format json >> str} && {echo str}} || 
-                {echo "faild to get score for ${repoName}"}
+                echo "times:${count}  repo_url:${repoName}"
              }
              
              
